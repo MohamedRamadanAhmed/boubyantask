@@ -29,10 +29,5 @@ public abstract class AbstractHttpException extends RuntimeException implements 
         return httpError;
     }
 
-    @Override
-    public String getErrorCode() {
-
-        return httpError.getCode();
-    }
 
 }

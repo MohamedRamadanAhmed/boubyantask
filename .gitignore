@@ -1,9 +1,10 @@
 HELP.md
 .gradle
 build/
+withswaggerfile.build/
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+!**/src/main/**/withswaggerfile.build/
+!**/src/test/**/withswaggerfile.build/
 
 ### STS ###
 .apt_generated
@@ -17,8 +18,19 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### IntelliJ IDEA ###
-.idea
+### IntelliJ IDEA keeping CodeStyles ###
+# IDE - IntelliJ
+/.idea/*
+# Keep the code styles.
+!/.idea/codeStyles
+/.idea/codeStyles/*
+!/.idea/codeStyles/Project.xml
+!/.idea/codeStyles/codeStyleConfig.xml
+# Keep the inspection levels
+!/.idea/inspectionProfiles
+/.idea/inspectionProfiles/*
+!/.idea/inspectionProfiles/Project_Default.xml
+
 *.iws
 *.iml
 *.ipr
@@ -35,3 +47,24 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Terraform ###
+**/.terraform*
+
+### Versioning ###
+src/main/resources/version.txt
+src/main/resources/groupId.txt
+src/main/resources/artifactId.txt
+version.txt
+groupId.txt
+artifactId.txt
+
+### Automation ###
+/automation/remote
+/infrastructure
+/containers
+/hooks
+/.idea/
+/.idea/codeStyles/*
+backstage.yaml
+src/main/resources/dependencies.properties
