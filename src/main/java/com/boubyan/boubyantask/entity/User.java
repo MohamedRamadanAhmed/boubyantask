@@ -17,8 +17,8 @@ public class User {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Column(name = "USER_NAME")
-    private String username;
+    @Column(name = "NAME")
+    private String name;
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "PASSWORD")

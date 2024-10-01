@@ -31,9 +31,10 @@ public class CourseService {
     private final CourseMapper courseMapper;
     private final JwtTokenProvider jwtTokenProvider;
     private final PDFService pdfService;
+    private final String CACHE_NAME_COURSE = "courses";
 
 
-    @Cacheable("courses")
+    @Cacheable(cacheNames = CACHE_NAME_COURSE)
     public List<CourseDTO> getAllCourses() {
         List<Course> coursesList = courseRepository.findAll();
         return courseMapper.mapCourseToCourseDto(coursesList);
@@ -88,7 +89,8 @@ public class CourseService {
         return false;
     }
 
-    public ByteArrayOutputStream getCourseSchedule(Long courseId) {
+    @Cacheable(cacheNames = CACHE_NAME_COURSE,key = "#courseId")
+    public ByteArrayOutputStream getCourseScheduleAsPdf(Long courseId) {
         Optional<Course> optionalCourse = courseRepository.findById(courseId);
         Course course = validateOptionalCourse(optionalCourse);
         List<String> cells = new ArrayList<>();

@@ -15,8 +15,6 @@ public class UserDTO {
     @Email
     private String email;
     @NotBlank
-    private String username;
-    @NotBlank
     @Size(min = 8)
     private String password;
 }

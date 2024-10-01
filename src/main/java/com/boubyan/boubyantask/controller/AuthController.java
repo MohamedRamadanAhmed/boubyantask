@@ -31,9 +31,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenResponse> login(@RequestBody LoginRequest loginRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-        String token = jwtTokenProvider.generateToken(loginRequest.getUsername());
-        return ResponseEntity.ok(TokenResponse.builder().accessToken(token).tokenType(jwtTokenProvider.TOKEN_PREFIX).expiresIn(jwtExpirationInMs).build());
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+        String token = jwtTokenProvider.generateToken(loginRequest.getEmail());
+        return ResponseEntity.ok(TokenResponse.builder().accessToken(token).tokenType(jwtTokenProvider.TOKEN_TYPE).expiresIn(jwtExpirationInMs).build());
     }
 
     @PostMapping("/create")
@@ -41,6 +41,6 @@ public class AuthController {
     @Validated
     public ResponseEntity<TokenResponse> createUser(@RequestBody @Valid @Validated UserDTO userDTO) {
         userDetailsServiceImp.createUser(userDTO);
-        return ResponseEntity.ok(TokenResponse.builder().accessToken(jwtTokenProvider.generateToken(userDTO.getEmail())).tokenType(jwtTokenProvider.TOKEN_PREFIX).expiresIn(jwtExpirationInMs).build());
+        return ResponseEntity.ok(TokenResponse.builder().accessToken(jwtTokenProvider.generateToken(userDTO.getEmail())).tokenType(jwtTokenProvider.TOKEN_TYPE).expiresIn(jwtExpirationInMs).build());
     }
 }

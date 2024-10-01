@@ -14,23 +14,23 @@ import java.util.Date;
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
-    public final String TOKEN_HEADER = "Authorization";
-    public final String TOKEN_PREFIX = "Bearer ";
+    public final String TOKEN_HEADER_NAME = "Authorization";
+    public final String TOKEN_TYPE = "Bearer ";
     @Value("${app.jwtSecret}")
     private String jwtSecret;
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
     public String getAuthTokenFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader(TOKEN_HEADER);
-        if (bearerToken != null && bearerToken.startsWith(TOKEN_PREFIX)) {
-            return bearerToken.replace(TOKEN_PREFIX, "");
+        String bearerToken = request.getHeader(TOKEN_HEADER_NAME);
+        if (bearerToken != null && bearerToken.startsWith(TOKEN_TYPE)) {
+            return bearerToken.replace(TOKEN_TYPE, "");
         }
         return null;
     }
 
     public String convertBearerToken(String bearerToken) {
-        return bearerToken.replace(TOKEN_PREFIX, "");
+        return bearerToken.replace(TOKEN_TYPE, "");
 
     }
 

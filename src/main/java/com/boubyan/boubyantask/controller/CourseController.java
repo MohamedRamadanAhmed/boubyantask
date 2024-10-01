@@ -3,8 +3,6 @@ package com.boubyan.boubyantask.controller;
 import com.boubyan.boubyantask.model.dto.CourseDTO;
 import com.boubyan.boubyantask.service.CourseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -34,24 +32,22 @@ public class CourseController {
         return ResponseEntity.ok(courses);
     }
 
-    @GetMapping("/registerUserToCourse")
+    @GetMapping("/registerUser")
     public ResponseEntity<?> registerUserToCourse(@RequestParam(value = "courseId") Long courseId, @RequestHeader(name = "Authorization") String token) {
         return ResponseEntity.ok(courseService.registerUserToCourse(token, courseId));
     }
 
-    @GetMapping("/cancelCourseRegistration")
+    @GetMapping("/cancelRegistration")
     public ResponseEntity<?> cancelUserRegistrationToCourse(@RequestParam(value = "courseId") Long courseId, @RequestHeader(name = "Authorization") String token) {
         return ResponseEntity.ok(courseService.cancelUserRegistrationToCourse(token, courseId));
     }
 
     @GetMapping("/downloadPdfSchedule")
-    public ResponseEntity<?> downloadSchedule(@RequestParam(value = "courseId") Long courseId) {
+    public ResponseEntity<?> download(@RequestParam(value = "courseId") Long courseId) {
 
-        ByteArrayOutputStream file = courseService.getCourseSchedule(courseId);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Course_Schedule.pdf");
-        headers.setContentLength(file.size());
-        return new ResponseEntity<>(file.toByteArray(), headers, HttpStatus.OK);
+        ByteArrayOutputStream file = courseService.getCourseScheduleAsPdf(courseId);
+        return ResponseEntity.ok().contentLength(file.size())
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(file.toByteArray());
     }
 }

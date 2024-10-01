@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "aa881045-cb64-4688-8fb6-2c4c4b6e8720",
+		"name": "boubyan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26218245",
+		"_collection_link": "https://red-desert-716040.postman.co/workspace/DXLWorkspace~9d1eefec-b3e8-402c-9a87-66d7bb8f188c/collection/26218245-aa881045-cb64-4688-8fb6-2c4c4b6e8720?action=share&source=collection_link&creator=26218245"
+	},
+	"item": [
+		{
+			"name": "user create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"mm@gmail.com\",\r\n    \"name\":\"mohamed\",\r\n    \"password\":\"11111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/user/create"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"mm@gmail.com\",\r\n    \"password\":\"11111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/user/login"
+			},
+			"response": []
+		},
+		{
+			"name": "create new course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1tQGdtYWlsLmNvbSIsImlhdCI6MTcyNzc4Mzk2OCwiZXhwIjoxNzI3Nzg0MjY4fQ.D5PW7lc7SnZxxYs9XFVt6PnqPxB0ygRURCHcnVRIvoilURGZ8DWZwlgOZTY4BR-lZvU2bnKX7FBCpvZNPWZnhg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Spring\",\r\n    \"courseStartDate\":\"2024-10-01\",\r\n    \"courseEndDate\":\"2024-10-20\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/course/create"
+			},
+			"response": []
+		},
+		{
+			"name": "get all courses",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1tQGdtYWlsLmNvbSIsImlhdCI6MTcyNzc4MTY3NSwiZXhwIjoxNzI3NzgxOTc1fQ.hxdJx-x7INUQHF90b_aTvqeGbgSTMj2C3a3tbjfAayR0cr0CsckfJYFB2IV0B0tn8r9Q08oE0qcjzopY55YbYg",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/course/findAll"
+			},
+			"response": []
+		},
+		{
+			"name": "register user to course",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1tQGdtYWlsLmNvbSIsImlhdCI6MTcyNzc4MjkwNiwiZXhwIjoxNzI3NzgzMjA2fQ.nV5KgN2fmriZuTrFE_jcwX5M02QJJ_JIrDQO4771HTKQt4pb1Bpub5xJ8UzQ4lZsOM4IxXmlMO-Jpo6ptQ-qIw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/course/registerUser?courseId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"course",
+						"registerUser"
+					],
+					"query": [
+						{
+							"key": "courseId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancel user registration to course",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1tQGdtYWlsLmNvbSIsImlhdCI6MTcyNzc4MjkwNiwiZXhwIjoxNzI3NzgzMjA2fQ.nV5KgN2fmriZuTrFE_jcwX5M02QJJ_JIrDQO4771HTKQt4pb1Bpub5xJ8UzQ4lZsOM4IxXmlMO-Jpo6ptQ-qIw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/course/cancelRegistration?courseId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"course",
+						"cancelRegistration"
+					],
+					"query": [
+						{
+							"key": "courseId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download pdf",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJlbWFpbCI6Im1tQGdtYWlsLmNvbSIsImlhdCI6MTcyNzc4Mzk2OCwiZXhwIjoxNzI3Nzg0MjY4fQ.D5PW7lc7SnZxxYs9XFVt6PnqPxB0ygRURCHcnVRIvoilURGZ8DWZwlgOZTY4BR-lZvU2bnKX7FBCpvZNPWZnhg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/course/downloadPdfSchedule?courseId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"course",
+						"downloadPdfSchedule"
+					],
+					"query": [
+						{
+							"key": "courseId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
